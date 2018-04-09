@@ -1,8 +1,14 @@
-function get_todo(){
-   fetch('http://127.0.0.1:8080/fetch')
-    .then(response => response.json())
-    .then(myJson => console.log(myJson));
-}
+// function get_todo(){
+//    fetch('http://127.0.0.1:8080/fetch')
+//     .then(response => response.json())
+//     .then(myJSON => {
+//      const oi = `
+//       <h1>${myJSON.task}</h1>
+//      `
+//      console.log(myJSON)
+//      document.getElementById('old_tasks').innerHTML = oi
+//     });
+// }
 
 
 function post_todo() {

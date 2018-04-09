@@ -22,7 +22,7 @@ def send_static(path):
 @app.route('/')
 @jinja2_view('home.tpl', template_lookup=['views'])
 def index():
-    return {'form': TodoForm(), 'xxx': 'oi'}
+    return {'form': TodoForm()}
 
 
 # --------------
@@ -35,7 +35,6 @@ ins = task_table.insert()
 
 @app.route('/fetch')
 def xx():
-    """TODO: return SQLAlchemy json."""
     s = select([task_table])
     return dumps({x[1]: str(x[2]) for x in s.execute()})
 

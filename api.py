@@ -1,13 +1,16 @@
+from datetime import datetime
 from json import dumps
 from bottle import Bottle, static_file, jinja2_view, request
 from wtforms import StringField, Form, DateTimeField, SubmitField
+from sqlalchemy import select
+from db import engine, task_table
 
 app = Bottle()
 
 
 class TodoForm(Form):
     task = StringField('Task')
-    date = DateTimeField('When', format='%y-%m/%d')
+    date = DateTimeField('When', format='%Y-%m-%d')
     butt = SubmitField('ok')
 
 
@@ -26,17 +29,28 @@ def index():
 # Service routes
 # --------------
 
+conn = engine.connect()
+ins = task_table.insert()
+
 
 @app.route('/fetch')
 def xx():
     """TODO: return SQLAlchemy json."""
-    return dumps({'xxx': 'oi'})
+    s = select([task_table])
+    return dumps({x[1]: str(x[2]) for x in s.execute()})
 
 
 @app.post('/fetchp')
-def xx():
-    print(request.json)
-    return dumps({})
+def insert_db():
+    returned = request.json
+    # import pdb; pdb.set_trace()
+    if returned.keys():
+        new_task = ins.values(
+            task=returned['task'],
+            date=datetime.strptime(returned['date'], '%Y-%m-%d')
+            )
+        conn.execute(new_task)
+        return dumps({'OK': 200})
 
 
 app.run()

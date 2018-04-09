@@ -1,16 +1,14 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
-bottle = "*"
-"jinja2" = "*"
-wtforms = "*"
-
+bottle = "==0.12.13"
+"Jinja2" = "==2.10"
+WTForms = "==2.1"
+MarkupSafe = "==1.0"
+sqlalchemy = "*"
 
 [dev-packages]
-
+pycodestyle = "*"

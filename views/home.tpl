@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script type="text/javascript" src="/static/oi.js"> </script>
+    <script type="text/javascript" src="/static/requests.js"> </script>
   </head>
   <body>
     <h1> TODO LIST </h1>
@@ -8,6 +8,6 @@
       <br>
       {{ form.date.label }}{{form.date(type='date')}}
       <br>
-      {{form.butt(onclick="post_todo();")}}
+      {{form.butt(onclick="post_todo();get_todo();")}}
   </body>
 </html>

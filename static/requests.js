@@ -1,13 +1,15 @@
+function write_table(task_json){
+     var table = document.getElementById('old_tasks')
+     table.innerHTML = task_json.map(task =>
+          `<tr><td>${task.task}</td>
+           <td>${task.date}</td></tr>`
+      ).join('')
+  }
+
 function get_todo(){
    fetch('http://127.0.0.1:8080/fetch')
     .then(response => response.json())
-    .then(myJSON => {
-     const oi = `
-      <h1>${myJSON.task}</h1>
-     `
-     console.log(myJSON)
-     document.getElementById('old_tasks').innerHTML = oi
-    });
+    .then(myJSON => write_table(myJSON))
 }
 
 
@@ -27,3 +29,5 @@ function post_todo() {
   })
   .then(response => response.json())
 }
+
+get_todo()

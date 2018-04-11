@@ -8,10 +8,11 @@ app = Bottle()
 conn = engine.connect()
 ins = task_table.insert()
 
+
 @app.route('/fetch')
 def xx():
     return dumps(
-        [{'task': x[1], 'data': str(x[2])}
+        [{'task': x[1], 'date': str(x[2])}
          for x in select([task_table]).execute()]
     )
 
@@ -20,9 +21,9 @@ def xx():
 def insert_db():
     returned = request.json
     if returned.keys():
-        new_task = ins.values(
-            task=returned['task'],
-            date=datetime.strptime(returned['date'], '%Y-%m-%d')
-            )
+        task = returned['task']
+        date = datetime.strptime(returned['date'], '%Y-%m-%d')
+        new_task = ins.values(task=task, date=date)
         conn.execute(new_task)
         return dumps({'OK': 200})
+    return dumps({'error': 300})

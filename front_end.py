@@ -8,6 +8,7 @@ class TodoForm(Form):
     task = StringField('Task')
     date = DateTimeField('When', format='%Y-%m-%d')
     butt = SubmitField('ok')
+    butt_s = SubmitField('show tasks')  # simplify js tests
 
 
 @app.route('/static/:path#.+#')

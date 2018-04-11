@@ -8,11 +8,12 @@
       <br>
       {{ form.date.label }}{{form.date(type='date')}}
       <br>
-      {{form.butt(onclick="post_todo();get_todo();")}}
+      {{form.butt(onclick="post_todo();")}}
+      {{form.butt_s(onclick="get_todo();")}}
 
       <h2>Taks</h2>
-      <div id="old_tasks">
+      <table id="old_tasks">
 
-      </div>
+      </table>
   </body>
 </html>
